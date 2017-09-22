@@ -15,6 +15,7 @@
 	<p>Welcome!</p>
 	<p>
 		<a class="btn btn-primary btn-lg" href="/etnshop/product/list" role="button">Products</a>
+		<a class="btn btn-primary btn-lg" href="/etnshop/product/create" role="button">Create Product</a>
 	</p>
 </div>
 

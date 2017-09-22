@@ -1,7 +1,7 @@
 TODO: 
 
 1) přidat k produktu sériové číslo
-	- upravit model (otázka produktů, které už v DB jsou)
+	- upravit model
 	- upravit view
 
 2) přidat možnost zadávat nové produkty a měnit existující
