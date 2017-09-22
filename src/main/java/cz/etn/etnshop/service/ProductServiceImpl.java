@@ -33,8 +33,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public boolean isProductExist(Product product) {
-        return false;
+    public boolean serialNumberExist(Product product) {
+        return productDao.serialNumberExist(product);
     }
+
 
 }

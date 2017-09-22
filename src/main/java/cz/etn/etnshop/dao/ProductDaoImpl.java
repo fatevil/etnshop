@@ -1,6 +1,7 @@
 package cz.etn.etnshop.dao;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -28,8 +29,12 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     }
 
     @Override
-    public boolean isProductExist(Product product) {
-        return false;
+    public boolean serialNumberExist(Product product) {
+        Query q = getSession().createSQLQuery("SELECT * FROM product WHERE serial_number = :value");
+        q.setParameter("value", product.getSerialNumber());
+        List list = q.list();
+        return !list.isEmpty();
     }
+
 
 }

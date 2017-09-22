@@ -13,5 +13,5 @@ public interface ProductDao {
 
     Product updateProduct(Product product);
 
-    public boolean isProductExist(Product product);
+    boolean serialNumberExist(Product product);
 }

@@ -1,37 +1,43 @@
-
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>etnShop</title>
 
-    <spring:url value="/resources/core/css/hello.css" var="coreCss" />
+    <spring:url value="/resources/core/css/hello.css" var="coreCss"/>
     <spring:url value="/resources/core/css/bootstrap.min.css"
-                var="bootstrapCss" />
-    <link href="${bootstrapCss}" rel="stylesheet" />
-    <link href="${coreCss}" rel="stylesheet" />
+                var="bootstrapCss"/>
+    <link href="${bootstrapCss}" rel="stylesheet"/>
+    <link href="${coreCss}" rel="stylesheet"/>
 </head>
 
 <div class="container">
-    <h2>Create Product</h2>
-    <form:form method="post" action="somepage" commandName="somedata">
-        <table>
-            <tr>
-                <td>name</td>
-                <td><form:input path="name" /></td>
-            </tr>
-            <tr>
-                <td>age</td>
-                <!--Notice, this is normal html tag, will not be bound to an object -->
-                <td><input name="age" type="text"/></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="send"/>
-                </td>
-            </tr>
-        </table>
+    <h2>Create New Product</h2>
+    <form:form method="post" action="./create" modelAttribute="productForm" class="form-horizontal">
+
+        <div class="row">
+            <div class="col-sm-4">
+                <label class="control-label">Name:</label>
+                <form:errors path="name" class="text-danger"/>
+                <form:input path="name" class="col-sm-2 form-control"/>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <label class="control-label">Serial Number:</label>
+                <form:errors path="serialNumber" class="text-danger"/>
+                <form:input path="serialNumber" class="col-sm-2 form-control"/>
+            </div>
+
+        </div>
+        <br>
+        <p>
+            <input class="btn btn-secondary" type="submit" value="Submit">
+        </p>
     </form:form>
 
     <hr>
@@ -44,9 +50,9 @@
 </div>
 
 <spring:url value="/resources/core/css/bootstrap.min.js"
-            var="bootstrapJs" />
+            var="bootstrapJs"/>
 
 <script src="${bootstrapJs}"></script>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </body>
 </html>
