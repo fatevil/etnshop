@@ -22,4 +22,19 @@ public class ProductServiceImpl implements ProductService {
         return products;
     }
 
+    @Override
+    public void saveProduct(Product product) {
+        productDao.saveProduct(product);
+    }
+
+    @Override
+    public Product updateProduct(Product product) {
+        return null;
+    }
+
+    @Override
+    public boolean isProductExist(Product product) {
+        return false;
+    }
+
 }
