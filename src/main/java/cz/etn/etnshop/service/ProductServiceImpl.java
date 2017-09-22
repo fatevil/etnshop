@@ -1,22 +1,25 @@
 package cz.etn.etnshop.service;
 
-import java.util.List;
-
+import cz.etn.etnshop.dao.Product;
+import cz.etn.etnshop.dao.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cz.etn.etnshop.dao.Product;
-import cz.etn.etnshop.dao.ProductDao;
+import java.util.List;
 
 @Service("productService")
 public class ProductServiceImpl implements ProductService {
 
-	@Autowired
-	private ProductDao productDao;
+    @Autowired
+    private ProductDao productDao;
 
-	@Override
-	public List<Product> getProducts() {
-		return productDao.getProducts();
-	}
+    @Override
+    public List<Product> getProducts() {
+        List<Product> products = productDao.getProducts();
+
+        products.stream().forEach(System.out::println);
+
+        return products;
+    }
 
 }

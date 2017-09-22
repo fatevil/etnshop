@@ -19,6 +19,7 @@
 			<tr>
 				<th>ID</th>
 				<th>Name</th>
+				<th>Serial Number</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -26,6 +27,7 @@
 				<tr>
 					<td>${product.id}</td>
 					<td>${product.name}</td>
+					<td>${product.serialNumber}</td>
 				</tr>	
 			</c:forEach>
 		</tbody>
