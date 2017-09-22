@@ -1,0 +1,19 @@
+TODO: 
+
+1) přidat k produktu sériové číslo
+	- upravit model (otázka produktů, které už v DB jsou)
+	- upravit view
+
+2) přidat možnost zadávat nové produkty a měnit existující
+	- přidat odkaz
+	- upravit mapování controlleru
+	- přidat view - update, create
+	- implementovat update, create
+	- validace?
+
+3) přidat fulltext vyhledávání
+	- implementovat na DAU
+
+
+
+
