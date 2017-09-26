@@ -54,7 +54,6 @@ public class ProductController {
             return modelAndView;
         }
 
-
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
@@ -70,8 +69,6 @@ public class ProductController {
         return modelAndView;
     }
 
-    // TODO: bean validation
-    //
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ModelAndView update(@ModelAttribute("productForm") Product product, ModelMap model, BindingResult result) {
         if (productService.serialNumberExistAndIsNotMe(product)) {
@@ -100,9 +97,6 @@ public class ProductController {
 
             ModelAndView modelAndView = new ModelAndView("product/list");
             modelAndView.addObject("products", products);
-
-            products.stream().forEach(System.out::println);
-
             return modelAndView;
         } else {
             ModelAndView modelAndView = new ModelAndView("product/fulltextsearch");

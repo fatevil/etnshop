@@ -16,9 +16,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getProducts() {
         List<Product> products = productDao.getProducts();
-
-        products.stream().forEach(System.out::println);
-
         return products;
     }
 
