@@ -5,18 +5,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
+@Transactional
 public interface ProductService {
 
     @Transactional(readOnly = true)
     List<Product> getProducts();
 
-    @Transactional
     void saveProduct(Product product);
 
     Product updateProduct(Product product);
 
-    @Transactional
     boolean serialNumberExist(Product product);
+
+    boolean serialNumberExistAndIsNotMe(Product product);
+
+    Product find(int id);
 
 }

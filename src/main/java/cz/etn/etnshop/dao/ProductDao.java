@@ -13,5 +13,9 @@ public interface ProductDao {
 
     Product updateProduct(Product product);
 
-    boolean serialNumberExist(Product product);
+    boolean serialNumberExist(int serialNumber);
+
+    boolean serialNumberExistAndIsNotMe(int serialNumber, Product product);
+
+    Product find(int id);
 }

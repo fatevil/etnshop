@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,7 +36,7 @@ public class ProductController {
 
     // TODO: bean validation
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ModelAndView addStudent(@ModelAttribute("productForm") Product product, ModelMap model, BindingResult result) {
+    public ModelAndView create(@ModelAttribute("productForm") Product product, ModelMap model, BindingResult result) {
         if (productService.serialNumberExist(product)) {
             result.rejectValue("serialNumber", "error.serialNumber", "Serial number is already used!");
         }
@@ -54,5 +55,35 @@ public class ProductController {
         }
 
 
+    }
+
+    //// TODO: 22.9.17
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public ModelAndView update(@PathVariable(value = "id") int id) {
+        ModelAndView modelAndView = new ModelAndView("product/update");
+        modelAndView.addObject("productForm", productService.find(id));
+        return modelAndView;
+    }
+
+    // TODO: bean validation
+    //
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ModelAndView update(@ModelAttribute("productForm") Product product, ModelMap model, BindingResult result) {
+        if (productService.serialNumberExistAndIsNotMe(product)) {
+            result.rejectValue("serialNumber", "error.serialNumber", "Serial number is already used!");
+        }
+        if (product.getName().length() == 0) {
+            result.rejectValue("name", "error.name", "Name of the product cannot be empty!");
+        }
+
+        if (!result.hasErrors()) {
+            productService.updateProduct(product);
+            ModelAndView modelAndView = new ModelAndView("redirect:/product/list");
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("product/update", result.getModel());
+            modelAndView.addObject("productForm", product);
+            return modelAndView;
+        }
     }
 }

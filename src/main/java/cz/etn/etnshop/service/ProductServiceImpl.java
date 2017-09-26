@@ -29,12 +29,23 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product updateProduct(Product product) {
-        return null;
+        return productDao.updateProduct(product);
     }
 
     @Override
     public boolean serialNumberExist(Product product) {
-        return productDao.serialNumberExist(product);
+        return productDao.serialNumberExist(product.getSerialNumber());
+    }
+
+
+    @Override
+    public boolean serialNumberExistAndIsNotMe(Product product) {
+        return productDao.serialNumberExistAndIsNotMe(product.getSerialNumber(), product);
+    }
+
+    @Override
+    public Product find(int id) {
+        return productDao.find(id);
     }
 
 

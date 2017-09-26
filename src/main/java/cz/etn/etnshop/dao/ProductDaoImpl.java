@@ -25,15 +25,33 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
 
     @Override
     public Product updateProduct(Product product) {
-        return null;
+        return (Product) getSession().merge(product);
     }
 
     @Override
-    public boolean serialNumberExist(Product product) {
+    public boolean serialNumberExist(int serialNumber) {
         Query q = getSession().createSQLQuery("SELECT * FROM product WHERE serial_number = :value");
-        q.setParameter("value", product.getSerialNumber());
+        q.setParameter("value", serialNumber);
         List list = q.list();
         return !list.isEmpty();
+    }
+
+    //TODO: .
+    @Override
+    public boolean serialNumberExistAndIsNotMe(int serialNumber, Product product) {
+        Query q = getSession().createSQLQuery("SELECT * FROM product WHERE serial_number = " + serialNumber + " AND id != " + product.getId());
+        List list = q.list();
+        return !list.isEmpty();
+    }
+
+    @Override
+    public Product find(int id) {
+        Object o = null;
+        if ((o = getSession().get(Product.class, id)) != null) {
+            return (Product) o;
+        } else {
+            return null;
+        }
     }
 
 
