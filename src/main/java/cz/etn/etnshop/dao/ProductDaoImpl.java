@@ -30,7 +30,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
 
     @Override
     public boolean serialNumberExist(int serialNumber) {
-        return (Long) getSession().createQuery("select count(*) from product where serial_number = :value")
+        return (Long) getSession().createQuery("select count(p) from Product p where p.serialNumber = :value")
                 .setParameter("value", serialNumber)
                 .uniqueResult() > 0;
     }
@@ -38,7 +38,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     //TODO: .
     @Override
     public boolean serialNumberExistAndIsNotMe(int serialNumber, Product product) {
-        return (Long) getSession().createQuery("select count(*) from product where serial_number = ? AND id != ?")
+        return (Long) getSession().createQuery("select count(p) from Product p where p.serialNumber = ? AND p.id != ?")
                 .setInteger(0, serialNumber)
                 .setInteger(1, product.getId())
                 .uniqueResult() > 0;
