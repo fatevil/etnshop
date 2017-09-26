@@ -1,19 +1,20 @@
-TODO: 
 
-1) přidat k produktu sériové číslo
-	- upravit model
-	- upravit view
+### Prerequisites
 
-2) přidat možnost zadávat nové produkty a měnit existující
-	- přidat odkaz
-	- upravit mapování controlleru
-	- přidat view - update, create
-	- implementovat update, create
-	- validace?
+```
+git clone git@github.com:fatevil/etnshop.git
+cd etnshop
+```
 
-3) přidat fulltext vyhledávání
-	- implementovat na DAU
+In MySQL database:
+```
+mysql> create database etnshop;
+mysql> use etnshop;
+mysql> source etnshop_product.sql;
+ ```
 
-
-
-
+Configure DB password
+```
+gedit src/main/resources/application.properties
+gradle jettyRun
+```
