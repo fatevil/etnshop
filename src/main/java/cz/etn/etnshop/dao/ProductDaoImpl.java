@@ -1,6 +1,7 @@
 package cz.etn.etnshop.dao;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -56,8 +57,9 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
 
     @Override
     public List<Product> fullTextSearch(String word) {
-        String hqlQuery = "SELECT * FROM product WHERE MATCH(name) AGAINST ('" + word + "')";
-        List<Object[]> objects = (List<Object[]>) getSession().createSQLQuery(hqlQuery).list();
+        String sqlQuery = "SELECT * FROM product WHERE MATCH(name) AGAINST ('" + word + "')";
+        Query q = getSession().createSQLQuery(sqlQuery);
+        List<Object[]> objects = (List<Object[]>) q.list();
 
         List<Product> products = new ArrayList<>();
         for (Object[] p : objects) {
