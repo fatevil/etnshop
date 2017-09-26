@@ -1,25 +1,26 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>etnShop</title>
+    <title>etnShop</title>
 
-<spring:url value="/resources/core/css/hello.css" var="coreCss" />
-<spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss" />
-<link href="${bootstrapCss}" rel="stylesheet" />
-<link href="${coreCss}" rel="stylesheet" />
+    <spring:url value="/resources/core/css/hello.css" var="coreCss"/>
+    <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss"/>
+    <link href="${bootstrapCss}" rel="stylesheet"/>
+    <link href="${coreCss}" rel="stylesheet"/>
 </head>
 
 <div class="container">
-	<p>Welcome!</p>
-	<p>
-		<a class="btn btn-primary btn-lg" href="/etnshop/product/list" role="button">Products</a>
-		<a class="btn btn-primary btn-lg" href="/etnshop/product/create" role="button">Create Product</a>
-	</p>
+    <p>Welcome!</p>
+    <p>
+        <a class="btn btn-primary btn-lg" href="/etnshop/product/list" role="button">Products</a>
+        <a class="btn btn-primary btn-lg" href="/etnshop/product/create" role="button">Create Product</a>
+        <a class="btn btn-primary btn-lg" href="/etnshop/product/fulltext" role="button">Fulltext Search</a>
+    </p>
 </div>
 
-<spring:url value="/resources/core/css/bootstrap.min.js" var="bootstrapJs" />
+<spring:url value="/resources/core/css/bootstrap.min.js" var="bootstrapJs"/>
 
 <script src="${bootstrapJs}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

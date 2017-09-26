@@ -4,6 +4,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository("productDao")
@@ -52,6 +53,23 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public List<Product> fullTextSearch(String word) {
+        String hqlQuery = "SELECT * FROM product WHERE MATCH(name) AGAINST ('" + word + "')";
+        List<Object[]> objects = (List<Object[]>) getSession().createSQLQuery(hqlQuery).list();
+
+        List<Product> products = new ArrayList<>();
+        for (Object[] p : objects) {
+            Product product = new Product();
+            product.setId((int) p[0]);
+            product.setName((String) p[1]);
+            product.setSerialNumber((int) p[2]);
+            products.add(product);
+        }
+
+        return products;
     }
 
 

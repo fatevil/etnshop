@@ -21,4 +21,6 @@ public interface ProductService {
 
     Product find(int id);
 
+    List<Product> fullTextSearch(String word);
+
 }

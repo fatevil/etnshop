@@ -18,4 +18,6 @@ public interface ProductDao {
     boolean serialNumberExistAndIsNotMe(int serialNumber, Product product);
 
     Product find(int id);
+
+    List<Product> fullTextSearch(String word);
 }

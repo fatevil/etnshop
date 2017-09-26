@@ -5,12 +5,12 @@ import cz.etn.etnshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 
 @Controller
@@ -57,11 +57,16 @@ public class ProductController {
 
     }
 
-    //// TODO: 22.9.17
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public ModelAndView update(@PathVariable(value = "id") int id) {
         ModelAndView modelAndView = new ModelAndView("product/update");
         modelAndView.addObject("productForm", productService.find(id));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/fulltext", method = RequestMethod.GET)
+    public ModelAndView fulltext() {
+        ModelAndView modelAndView = new ModelAndView("product/fulltextsearch");
         return modelAndView;
     }
 
@@ -85,5 +90,25 @@ public class ProductController {
             modelAndView.addObject("productForm", product);
             return modelAndView;
         }
+    }
+
+    @RequestMapping(value = "/list/fulltext", method = RequestMethod.POST)
+    public ModelAndView fulltext(@RequestBody MultiValueMap<String, String> formData) {
+
+        if (formData.containsKey("name")) {
+            List<Product> products = productService.fullTextSearch(formData.getFirst("name"));
+
+            ModelAndView modelAndView = new ModelAndView("product/list");
+            modelAndView.addObject("products", products);
+
+            products.stream().forEach(System.out::println);
+
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("product/fulltextsearch");
+            return modelAndView;
+        }
+
+
     }
 }

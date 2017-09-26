@@ -48,5 +48,10 @@ public class ProductServiceImpl implements ProductService {
         return productDao.find(id);
     }
 
+    @Override
+    public List<Product> fullTextSearch(String word) {
+        return productDao.fullTextSearch(word);
+    }
+
 
 }
