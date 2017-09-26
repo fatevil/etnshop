@@ -1,5 +1,5 @@
 
-### Prerequisites
+### Usage
 
 ```
 git clone git@github.com:fatevil/etnshop.git
