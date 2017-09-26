@@ -21,7 +21,7 @@
             <div class="col-sm-4">
                 <label class="control-label">Name:</label>
                 <form:errors path="name" class="text-danger"/>
-                <form:input path="name" class="col-sm-2 form-control"/>
+                <form:input path="name" class="col-sm-2 form-control" required="required"/>
 
             </div>
         </div>
@@ -29,7 +29,7 @@
             <div class="col-sm-4">
                 <label class="control-label">Serial Number:</label>
                 <form:errors path="serialNumber" class="text-danger"/>
-                <form:input path="serialNumber" class="col-sm-2 form-control"/>
+                <form:input path="serialNumber" class="col-sm-2 form-control" required="required"/>
             </div>
         </div>
         <br>
