@@ -29,7 +29,8 @@
             <div class="col-sm-4">
                 <label class="control-label">Serial Number:</label>
                 <form:errors path="serialNumber" class="text-danger"/>
-                <form:input path="serialNumber" class="col-sm-2 form-control" required="required"/>
+                <form:input path="serialNumber" class="col-sm-2 form-control" type="number" max="2147483647"
+                            required="required"/>
             </div>
         </div>
         <br>
